@@ -1,13 +1,17 @@
 import 'package:classz_web/utils/app_utils.dart';
 import 'package:classz_web/view/theme/app_colors.dart';
+import 'package:classz_web/view/widgets/customSvg.dart';
 import 'package:classz_web/view/widgets/customText.dart';
 import 'package:flutter/material.dart';
 import 'package:classz_web/view/widgets/customImage.dart';
-import 'package:pixel_perfect/pixel_perfect.dart';
 
 class LandingPage extends StatelessWidget {
-  const LandingPage({super.key});
-
+  LandingPage({super.key});
+  final ScrollController _scrollController = ScrollController();
+  final GlobalKey _contactUsKey = GlobalKey();
+  final GlobalKey _contactKey = GlobalKey();
+  final GlobalKey _visionKey = GlobalKey();
+  final GlobalKey _discoverKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -16,36 +20,153 @@ class LandingPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // SizedBox(
-            //   height: 22,
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 28.w),
-            //   child: _headerSection(),
-            // ),
             _allfont(),
             SizedBox(
               height: 203,
             ),
-
-            _vision(),
+            _vision(key: _visionKey),
             SizedBox(
               height: 203,
             ),
-
-            _discover(),
+            _discover(key: _discoverKey),
             SizedBox(
               height: 203,
             ),
-            //    _launch()
+            _launch(),
+            SizedBox(
+              height: 203,
+            ),
+            _contact(key: _contactKey)
           ],
         ),
       ),
     );
   }
 
-  Widget _discover() {
+  Widget _contact({required GlobalKey key}) {
+    return Container(
+      key: key,
+      decoration: BoxDecoration(
+          gradient:
+              LinearGradient(colors: [AppColors.rgba63, AppColors.rgba73])),
+      width: 1440.w,
+      height: 1440.w.aspectHeight(1440.w, 424),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 71,
+            left: 91.w,
+            bottom: 0,
+            right: 0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                customText(
+                    text: "Anything in mind?\nChat with Us",
+                    font: 40.fSize,
+                    height: 54.8.fSize / 40.fSize,
+                    color: AppColors.rgba28,
+                    fontWeight: FontWeight.w700),
+                Spacer(),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    customImage(
+                        imagePath: ImagePath.qr, height: 141.w, width: 141.w),
+                    SizedBox(
+                      width: 23.67.w,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _iconText(
+                            imagePath: ImagePath.whatsappSvg,
+                            size: 32.w,
+                            text: "+852 5211 8996"),
+                        SizedBox(
+                          height: 16.w,
+                        ),
+                        _iconText(
+                            imagePath: ImagePath.mailSvg,
+                            size: 21.w,
+                            text: "classzhk@gmail.com")
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 70,
+                )
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 82.w,
+            child: customImage(
+                imagePath: ImagePath.phone2,
+                height: 350.w.aspectHeight(373.w, 354),
+                width: 373.w),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 315.w,
+            child: customImage(
+                imagePath: ImagePath.phone1,
+                height: 350.w.aspectHeight(373.w, 354),
+                width: 350.w),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _iconText(
+      {required String imagePath,
+      required double size,
+      required String text,
+      Color? color}) {
+    return Row(
+      children: [
+        customSvg(
+            imagePath: imagePath, height: size, width: size, color: color),
+        customText(
+            text: text,
+            font: 30.fSize,
+            height: 35.fSize / 30.fSize,
+            color: AppColors.rgba28)
+      ],
+    );
+  }
+
+  Widget _launch() {
+    return Center(
+      child: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(children: [
+            TextSpan(
+              text: "Stay Tuned\n",
+              style: TextStyle(
+                  fontSize: 60.fSize,
+                  color: AppColors.rgba28,
+                  fontWeight: FontWeight.w700),
+            ),
+            TextSpan(
+              text: "To be Launched in late 2025.",
+              style: TextStyle(
+                  color: AppColors.rgba28,
+                  fontSize: 60.fSize,
+                  height: 1.5,
+                  fontWeight: FontWeight.w700),
+            )
+          ])),
+    );
+  }
+
+  Widget _discover({required GlobalKey key}) {
     return Column(
+      key: key,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Center(
@@ -676,10 +797,25 @@ class LandingPage extends StatelessWidget {
             imagePath: ImagePath.logo,
             height: 272.w.aspectHeight(272.w, 178),
             width: 272.w),
-        customText(text: "Our Vision", font: 25.fSize, color: AppColors.rgba28),
-        customText(text: "Features", font: 25.fSize, color: AppColors.rgba28),
+        InkWell(
+            onTap: () {
+              scrollToTarget(_visionKey);
+            },
+            child: customText(
+                text: "Our Vision", font: 25.fSize, color: AppColors.rgba28)),
+        InkWell(
+            onTap: () {
+              scrollToTarget(_discoverKey);
+            },
+            child: customText(
+                text: "Features", font: 25.fSize, color: AppColors.rgba28)),
         customText(text: "English/繁", font: 25.fSize, color: AppColors.rgba28),
-        _contactUs()
+        InkWell(
+            onTap: () {
+              print("hi");
+              scrollToTarget(_contactKey);
+            },
+            child: _contactUs())
       ],
     );
   }
@@ -772,10 +908,11 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-  Widget _vision() {
+  Widget _vision({required GlobalKey key}) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 43.w),
       child: SizedBox(
+        key: key,
         width: 1355.w,
         height: 1355.w.aspectHeight(1355.w, 806),
         child: Stack(
@@ -883,16 +1020,6 @@ class LandingPage extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
           textAlign: TextAlign.center),
-    );
-  }
-
-  Widget FeatureCard({required String imagePath, required String title}) {
-    return Container(
-      height: 140,
-      decoration:
-          BoxDecoration(image: DecorationImage(image: AssetImage(imagePath))),
-      child:
-          customText(text: title, font: 30.fSize, fontWeight: FontWeight.w700),
     );
   }
 

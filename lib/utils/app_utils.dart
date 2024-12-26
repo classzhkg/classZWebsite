@@ -114,25 +114,17 @@ class ImagePath {
   static const discover2 = "lib/assets/images/discover2.png";
   static const discover3 = "lib/assets/images/discover3.png";
   static const qr = "lib/assets/images/qr.png";
+  static const phone1 = "lib/assets/images/anything1.png";
+  static const phone2 = "lib/assets/images/anything2.png";
+  static const whatsappSvg = "lib/assets/icons/whatsapp.svg";
+  static const mailSvg = "lib/assets/icons/mail.svg";
+  static const likeSVg = "lib/assets/icons/like.svg";
 }
 
-List<Map<String, String>> dataList = [
-  {
-    'imagePath': ImagePath.discover1,
-    't1': 'Text 1 for item 1',
-    't2': 'Text 2 for item 1',
-    't3': 'Text 3 for item 1',
-  },
-  {
-    'imagePath': ImagePath.discover2,
-    't1': 'Text 1 for item 2',
-    't2': 'Text 2 for item 2',
-    't3': 'Text 3 for item 2',
-  },
-  {
-    'imagePath': ImagePath.discover3,
-    't1': 'Text 1 for item 3',
-    't2': 'Text 2 for item 3',
-    't3': 'Text 3 for item 3',
-  },
-];
+void scrollToTarget(GlobalKey key) {
+  Scrollable.ensureVisible(
+    key.currentContext!,
+    duration: Duration(seconds: 1),
+    curve: Curves.easeInOut,
+  );
+}
