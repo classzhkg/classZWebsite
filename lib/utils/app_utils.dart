@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 const num FIGMA_DESIGN_WIDTH = 1440;
 const num FIGMA_DESIGN_HEIGHT = 5727;
 
-extension ResponsiveExtension on num {
-  double get w => this * SizeConfig.widthScaleFactor;
-  double get h => this * SizeConfig.heightScaleFactor;
-  double get fSize => this * SizeConfig.widthScaleFactor;
-  double get r => this * SizeConfig.widthScaleFactor;
+// extension ResponsiveExtension on num {
+//   double get w => this * SizeConfig.widthScaleFactor;
+//   double get h => this * SizeConfig.heightScaleFactor;
+//   double get fSize => this * SizeConfig.widthScaleFactor;
+//   double get r => this * SizeConfig.widthScaleFactor;
 
-  // Calculate aspect ratio dynamically
-  double aspectHeight(double width, double height) => this * (height / width);
-  double aspectWidth(double width, double height) => this / (height / width);
-}
+//   // Calculate aspect ratio dynamically
+//   double aspectHeight(double width, double height) => this * (height / width);
+//   double aspectWidth(double width, double height) => this / (height / width);
+// }
 
 enum DeviceType { desktop, mobile, tablet }
 
@@ -69,38 +69,116 @@ class SizeUtils {
   }
 }
 
+// class SizeConfig {
+//   static late MediaQueryData _mediaQueryData;
+//   static late double screenWidth;
+//   static late double screenHeight;
+//   static late double blockSizeHorizontal;
+//   static late double blockSizeVertical;
+
+//   static late double _safeAreaHorizontal;
+//   static late double _safeAreaVertical;
+//   static late double safeBlockHorizontal;
+//   static late double safeBlockVertical;
+
+//   static late double widthScaleFactor;
+//   static late double heightScaleFactor;
+
+//   void init(BuildContext context) {
+//     _mediaQueryData = MediaQuery.of(context);
+//     screenWidth = _mediaQueryData.size.width;
+//     screenHeight = _mediaQueryData.size.height;
+//     blockSizeHorizontal = screenWidth / 100;
+//     blockSizeVertical = screenHeight / 100;
+//     // print(728.w);
+//     _safeAreaHorizontal =
+//         _mediaQueryData.padding.left + _mediaQueryData.padding.right;
+//     _safeAreaVertical =
+//         _mediaQueryData.padding.top + _mediaQueryData.padding.bottom;
+//     safeBlockHorizontal = (screenWidth - _safeAreaHorizontal) / 100;
+//     safeBlockVertical = (screenHeight - _safeAreaVertical) / 100;
+
+//     widthScaleFactor = screenWidth / FIGMA_DESIGN_WIDTH;
+//     heightScaleFactor = screenHeight / FIGMA_DESIGN_HEIGHT;
+//   }
+// }
+
+/// Utility class to handle responsive sizing and aspect ratios
 class SizeConfig {
   static late MediaQueryData _mediaQueryData;
   static late double screenWidth;
   static late double screenHeight;
-  static late double blockSizeHorizontal;
-  static late double blockSizeVertical;
+  static late double defaultSize;
+  static late Orientation orientation;
 
-  static late double _safeAreaHorizontal;
-  static late double _safeAreaVertical;
-  static late double safeBlockHorizontal;
-  static late double safeBlockVertical;
-
-  static late double widthScaleFactor;
-  static late double heightScaleFactor;
-
-  void init(BuildContext context) {
+  /// Initialize sizing configuration
+  static void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
     screenWidth = _mediaQueryData.size.width;
     screenHeight = _mediaQueryData.size.height;
-    blockSizeHorizontal = screenWidth / 100;
-    blockSizeVertical = screenHeight / 100;
-    // print(728.w);
-    _safeAreaHorizontal =
-        _mediaQueryData.padding.left + _mediaQueryData.padding.right;
-    _safeAreaVertical =
-        _mediaQueryData.padding.top + _mediaQueryData.padding.bottom;
-    safeBlockHorizontal = (screenWidth - _safeAreaHorizontal) / 100;
-    safeBlockVertical = (screenHeight - _safeAreaVertical) / 100;
-
-    widthScaleFactor = screenWidth / FIGMA_DESIGN_WIDTH;
-    heightScaleFactor = screenHeight / FIGMA_DESIGN_HEIGHT;
+    orientation = _mediaQueryData.orientation;
+    defaultSize = orientation == Orientation.landscape
+        ? screenHeight * 0.024
+        : screenWidth * 0.024;
   }
+
+  /// Check if configuration is initialized
+  static bool get isInitialized {
+    try {
+      return _mediaQueryData != null;
+    } catch (e) {
+      return false;
+    }
+  }
+}
+
+/// Extension for responsive sizing calculations
+extension SizeExtension on num {
+  /// Calculate width proportion of screen width
+  double get w => (this / FIGMA_DESIGN_WIDTH) * SizeConfig.screenWidth;
+  double get fSize => (this / FIGMA_DESIGN_WIDTH) * SizeConfig.screenWidth;
+double get h => (this / FIGMA_DESIGN_HEIGHT) * SizeConfig.screenHeight;
+  /// Calculate height proportion of container based on width and aspect ratio
+  double proportionalHeight({
+    required double originalWidth,
+    required double originalHeight,
+  }) {
+    assert(SizeConfig.isInitialized, 'SizeConfig must be initialized first');
+    assert(originalWidth > 0, 'Original width must be greater than 0');
+    assert(originalHeight > 0, 'Original height must be greater than 0');
+
+    final aspectRatio = originalWidth / originalHeight;
+    final width = w;
+    return width / aspectRatio;
+  }
+
+  /// Calculate position relative to container width
+  double relativeToWidth(double containerWidth) {
+    return this * containerWidth;
+  }
+
+  /// Calculate position relative to container height
+  double relativeToHeight(double containerHeight) {
+    return this * containerHeight;
+  }
+
+  /// Calculate font size relative to container height
+  double fontSize(double containerHeight) {
+    return this * containerHeight;
+  }
+}
+
+/// Helper class for maintaining original dimensions
+class OriginalDimension {
+  final double width;
+  final double height;
+
+  const OriginalDimension({
+    required this.width,
+    required this.height,
+  });
+
+  double get aspectRatio => width / height;
 }
 
 class ImagePath {

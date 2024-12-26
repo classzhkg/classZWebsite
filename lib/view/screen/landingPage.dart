@@ -1,3 +1,5 @@
+import 'package:classz_web/generated/l10n.dart';
+import 'package:classz_web/main.dart';
 import 'package:classz_web/utils/app_utils.dart';
 import 'package:classz_web/view/theme/app_colors.dart';
 import 'package:classz_web/view/widgets/customSvg.dart';
@@ -6,120 +8,149 @@ import 'package:flutter/material.dart';
 import 'package:classz_web/view/widgets/customImage.dart';
 
 class LandingPage extends StatelessWidget {
-  LandingPage({super.key});
+  final Function onLanguageChange;
+  LandingPage({super.key, required this.onLanguageChange});
+
   final ScrollController _scrollController = ScrollController();
+
   final GlobalKey _contactUsKey = GlobalKey();
+
   final GlobalKey _contactKey = GlobalKey();
+
   final GlobalKey _visionKey = GlobalKey();
+
   final GlobalKey _discoverKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    SizeConfig.init(context);
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _allfont(),
-            SizedBox(
-              height: 203,
-            ),
-            _vision(key: _visionKey),
-            SizedBox(
-              height: 203,
-            ),
-            _discover(key: _discoverKey),
-            SizedBox(
-              height: 203,
-            ),
-            _launch(),
-            SizedBox(
-              height: 203,
-            ),
-            _contact(key: _contactKey)
-          ],
-        ),
-      ),
+      body: LayoutBuilder(builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _allfont(context: context),
+              SizedBox(
+                height: 203.h,
+              ),
+              _vision(key: _visionKey, context: context),
+              SizedBox(
+                height: 203.h,
+              ),
+              _discover(key: _discoverKey, context: context),
+              SizedBox(
+                height: 203.h,
+              ),
+              _launch(context: context),
+              SizedBox(
+                height: 203.h,
+              ),
+              _contact(key: _contactKey)
+            ],
+          ),
+        );
+      }),
     );
   }
 
   Widget _contact({required GlobalKey key}) {
-    return Container(
-      key: key,
-      decoration: BoxDecoration(
-          gradient:
-              LinearGradient(colors: [AppColors.rgba63, AppColors.rgba73])),
-      width: 1440.w,
-      height: 1440.w.aspectHeight(1440.w, 424),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 71,
-            left: 91.w,
-            bottom: 0,
-            right: 0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                customText(
-                    text: "Anything in mind?\nChat with Us",
-                    font: 40.fSize,
-                    height: 54.8.fSize / 40.fSize,
-                    color: AppColors.rgba28,
-                    fontWeight: FontWeight.w700),
-                Spacer(),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    customImage(
-                        imagePath: ImagePath.qr, height: 141.w, width: 141.w),
-                    SizedBox(
-                      width: 23.67.w,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _iconText(
-                            imagePath: ImagePath.whatsappSvg,
-                            size: 32.w,
-                            text: "+852 5211 8996"),
-                        SizedBox(
-                          height: 16.w,
-                        ),
-                        _iconText(
-                            imagePath: ImagePath.mailSvg,
-                            size: 21.w,
-                            text: "classzhk@gmail.com")
-                      ],
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 70,
-                )
-              ],
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            right: 82.w,
-            child: customImage(
-                imagePath: ImagePath.phone2,
-                height: 350.w.aspectHeight(373.w, 354),
-                width: 373.w),
-          ),
-          Positioned(
-            bottom: 0,
-            right: 315.w,
-            child: customImage(
-                imagePath: ImagePath.phone1,
-                height: 350.w.aspectHeight(373.w, 354),
-                width: 350.w),
-          ),
-        ],
-      ),
+    final contactDimensions = OriginalDimension(
+      width: 1440,
+      height: 424,
     );
+//print(contactDimensions.aspectRatio);
+    return LayoutBuilder(builder: (context, constraints) {
+      final containerW = constraints.maxWidth;
+      final containerH = containerW / contactDimensions.aspectRatio;
+      // print(containerH);
+      return Container(
+        key: key,
+        decoration: BoxDecoration(
+            gradient:
+                LinearGradient(colors: [AppColors.rgba63, AppColors.rgba73])),
+        width: containerW,
+        height: containerH,
+        child: Stack(
+          children: [
+            Positioned(
+              top: 0.167.relativeToHeight(containerH), // 71/424
+              left: 0.063.relativeToWidth(containerW), // 91/1440
+              bottom: 0,
+              right: 0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  customText(
+                      text: "${S.of(context).anythingInMind}\n${S.of(context).chatWithUs}",
+                      font: 0.094.fontSize(containerH), // 40/424
+                      height: 54.8 / 40,
+                      color: AppColors.rgba28,
+                      fontWeight: FontWeight.w700),
+                  Spacer(),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      customImage(
+                        imagePath: ImagePath.qr,
+                        height: 0.333.relativeToHeight(containerH), // 141/424
+                        width: 0.098.relativeToWidth(containerW), // 141/1440
+                      ),
+                      SizedBox(
+                          width:
+                              0.016.relativeToWidth(containerW)), // 23.67/1440
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _iconText(
+                              imagePath: ImagePath.whatsappSvg,
+                              size: 0.075.relativeToHeight(
+                                  containerH), // 32/424 ≈ 0.075
+                              text: "+852 5211 8996"),
+                          SizedBox(
+                              height: 0.038.relativeToHeight(
+                                  containerH)), // 16/424 ≈ 0.038
+                          _iconText(
+                              imagePath: ImagePath.mailSvg,
+                              size: 0.049.relativeToHeight(
+                                  containerH), // 21/424 ≈ 0.049
+                              text: "classzhk@gmail.com")
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 70.h,
+                  )
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0.057.relativeToWidth(containerW), // 82/1440 ≈ 0.057
+              child: customImage(
+                  imagePath: ImagePath.phone2,
+                  height: containerH * 0.835, // 354/424 ≈ 0.835
+                  width: containerW * 0.259 // 373/1440 ≈ 0.259
+                  ),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0.219.relativeToWidth(containerW), // 315/1440 ≈ 0.219
+              child: customImage(
+                  imagePath: ImagePath.phone1,
+                  height: 0.835.relativeToHeight(containerH), // 354/424 ≈ 0.835
+                  width: 0.243.relativeToWidth(containerW) // 350/1440 ≈ 0.243
+                  ),
+            ),
+
+            // ... rest of your positioned widgets
+          ],
+        ),
+      );
+    });
   }
 
   Widget _iconText(
@@ -140,20 +171,20 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-  Widget _launch() {
+  Widget _launch({required BuildContext context}) {
     return Center(
       child: RichText(
           textAlign: TextAlign.center,
           text: TextSpan(children: [
             TextSpan(
-              text: "Stay Tuned\n",
+              text: "${S.of(context).stayTuned}\n",
               style: TextStyle(
                   fontSize: 60.fSize,
                   color: AppColors.rgba28,
                   fontWeight: FontWeight.w700),
             ),
             TextSpan(
-              text: "To be Launched in late 2025.",
+              text: S.of(context).toBeLaunchedInLate2025,
               style: TextStyle(
                   color: AppColors.rgba28,
                   fontSize: 60.fSize,
@@ -164,41 +195,47 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-  Widget _discover({required GlobalKey key}) {
+  Widget _discover({required GlobalKey key, required BuildContext context}) {
     return Column(
       key: key,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Center(
           child: customText(
-              text: "Discover Our Platform",
+              text: S.of(context).discoverOurPlatform,
               font: 60.fSize,
               height: 80.8.fSize / 60.fSize,
               color: AppColors.rgba28,
               letterSpacing: 0.1),
         ),
         SizedBox(
-          height: 100,
+          height: 100.h,
         ),
-        _discoverWidget1(),
+        _discoverWidget1(context: context),
         SizedBox(
-          height: 100,
+          height: 100.h,
         ),
-        _discoverWidget2(),
+        _discoverWidget2(context: context),
         SizedBox(
-          height: 100,
+          height: 100.h,
         ),
-        _discoverWidget3(),
+        _discoverWidget3(context: context),
       ],
     );
   }
 
-  Widget _discoverWidget1() {
+  Widget _discoverWidget1({required BuildContext context}) {
+    final contactDimensions = OriginalDimension(
+      width: 1440,
+      height: 500,
+    );
+    final containerw = SizeConfig.screenWidth;
+    final containerH = containerw / contactDimensions.aspectRatio;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 98.5.w),
       child: SizedBox(
-        width: 1440.w,
-        height: 1440.w.aspectHeight(1440.w, 500),
+        width: containerw,
+        height: containerH,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -207,7 +244,7 @@ class LandingPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 customText(
-                    text: "Performance Insights",
+                    text: S.of(context).performanceInsights,
                     font: 45.fSize,
                     color: AppColors.rgba28),
                 SizedBox(
@@ -234,7 +271,7 @@ class LandingPage extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text:
-                                    "Receive brief performance reports on platform after each lesson to ",
+                                    S.of(context).receiveBriefPerformanceReportsOnPlatformAfterEachLessonTo,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -242,7 +279,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: "track growth",
+                                text: " ${S.of(context).trackgrowth}",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -279,7 +316,7 @@ class LandingPage extends StatelessWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: "Know your child's ",
+                                text: S.of(context).knowYourChilds,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -287,7 +324,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: "performance level",
+                                text: S.of(context).performanceLevel,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -295,7 +332,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: " in comparison to peer",
+                                text: S.of(context).incomparisontopeers,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -333,7 +370,7 @@ class LandingPage extends StatelessWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: "Make ",
+                                text: S.of(context).make,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -341,7 +378,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: "confident, targeted",
+                                text: "${S.of(context).confident}, ${S.of(context).targeted}",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -349,7 +386,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: " learning decisions",
+                                text: " ${S.of(context).learningdecisions}",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -369,21 +406,25 @@ class LandingPage extends StatelessWidget {
               ],
             ),
             customImage(
-                imagePath: ImagePath.discover1,
-                height: 601.w.aspectHeight(601.w, 500),
-                width: 601.w)
+                imagePath: ImagePath.discover1, height: 601.w, width: 601.w)
           ],
         ),
       ),
     );
   }
 
-  Widget _discoverWidget2() {
+  Widget _discoverWidget2({required BuildContext context}) {
+    final contactDimensions = OriginalDimension(
+      width: 1440,
+      height: 500,
+    );
+    final containerw = SizeConfig.screenWidth;
+    final containerH = containerw / contactDimensions.aspectRatio;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 98.5.w),
       child: SizedBox(
-        width: 1440.w,
-        height: 1440.w.aspectHeight(1440.w, 500),
+        width: containerw,
+        height: containerH,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -392,7 +433,7 @@ class LandingPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 customText(
-                    text: "Trainings & Activities",
+                    text: S.of(context).trainingsAndActivities,
                     font: 45.fSize,
                     color: AppColors.rgba28),
                 SizedBox(
@@ -419,7 +460,7 @@ class LandingPage extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text:
-                                    "Access various child assessments, including ",
+                                    S.of(context).access,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -427,7 +468,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: "SEN screenings",
+                                text: " ${S.of(context).senscreening}",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -435,7 +476,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: " and ",
+                                text: " ${S.of(context).and} ",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -443,7 +484,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: "skill tests",
+                                text: S.of(context).skilltests,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -480,7 +521,7 @@ class LandingPage extends StatelessWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: "Join ",
+                                text: "${S.of(context).join} ",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -488,7 +529,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: "expert-led workshops ",
+                                text: "${S.of(context).expertledworkshop} ",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -497,7 +538,7 @@ class LandingPage extends StatelessWidget {
                               ),
                               TextSpan(
                                 text:
-                                    "focused on parenting to support your need",
+                                    S.of(context).focusedonparentingtoSupport,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -536,7 +577,7 @@ class LandingPage extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text:
-                                    "Enjoy engaging family activities to create",
+                                    S.of(context).enjoyEngagingFamilyActivitiesToCreate,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -544,7 +585,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: " memorable experiences",
+                                text: " ${S.of(context).memorableExperience}",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -564,21 +605,25 @@ class LandingPage extends StatelessWidget {
               ],
             ),
             customImage(
-                imagePath: ImagePath.discover2,
-                height: 601.w.aspectHeight(601.w, 500),
-                width: 601.w)
+                imagePath: ImagePath.discover2, height: 601.w, width: 601.w)
           ],
         ),
       ),
     );
   }
 
-  Widget _discoverWidget3() {
+  Widget _discoverWidget3({required BuildContext context}) {
+    final contactDimensions = OriginalDimension(
+      width: 1440,
+      height: 500,
+    );
+    final containerw = SizeConfig.screenWidth;
+    final containerH = containerw / contactDimensions.aspectRatio;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 98.5.w),
       child: SizedBox(
-        width: 1440.w,
-        height: 1440.w.aspectHeight(1440.w, 500),
+        width: containerw,
+        height: containerH,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -587,7 +632,7 @@ class LandingPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 customText(
-                    text: "Monthly STEAM Craft Kits",
+                    text: S.of(context).monthlySteamCraftKits,
                     font: 45.fSize,
                     color: AppColors.rgba28),
                 SizedBox(
@@ -613,7 +658,7 @@ class LandingPage extends StatelessWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: "Receive a new STEAM craft kit",
+                                text: S.of(context).receiveANewSteamCraftKit,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -621,7 +666,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: " delivered to your home ",
+                                text: " ${S.of(context).deliveredToYourHome} ",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -629,7 +674,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: "every month, ",
+                                text: "${S.of(context).everyMonth} ",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -637,7 +682,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: "free of charge",
+                                text: S.of(context).freeOfCharge,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -674,7 +719,7 @@ class LandingPage extends StatelessWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: "Spark creativity",
+                                text: S.of(context).sparkCreativity,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -683,7 +728,7 @@ class LandingPage extends StatelessWidget {
                               ),
                               TextSpan(
                                 text:
-                                    " with fun, interactive projects outside the classroom",
+                                    " ${S.of(context).withFunInteractiveProjects}",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -721,7 +766,7 @@ class LandingPage extends StatelessWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: "Designed by",
+                                text: S.of(context).designedBy,
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -729,7 +774,7 @@ class LandingPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: " child development experts",
+                                text: " ${S.of(context).childDevelopment}",
                                 style: TextStyle(
                                   fontSize: 25.fSize,
                                   height: 34.25.fSize / 25.fSize,
@@ -749,86 +794,117 @@ class LandingPage extends StatelessWidget {
               ],
             ),
             customImage(
-                imagePath: ImagePath.discover3,
-                height: 601.w.aspectHeight(601.w, 500),
-                width: 601.w)
+                imagePath: ImagePath.discover3, height: 601.w, width: 601.w)
           ],
         ),
       ),
     );
   }
 
-  Widget _allfont() {
+  Widget _allfont({required BuildContext context}) {
+    final contactDimensions = OriginalDimension(
+      width: 1440,
+      height: 911,
+    );
+
+    final containerW = SizeConfig.screenWidth;
+    final containerH = containerW / contactDimensions.aspectRatio;
     return SizedBox(
-      width: 1441.w,
-      height: 1441.w.aspectHeight(1441.w, 911),
+      width: containerW,
+      height: containerH,
       child: Stack(
         children: [
           Positioned(
-              top: 645.w.aspectHeight(645.w, 370),
+              top: (370 / 911).relativeToHeight(containerH),
               left: 645.w,
               child: _smallCircle()),
           Positioned(
-              top: 885.w.aspectHeight(885.w, 48),
+              top: (48 / 911).relativeToHeight(containerH),
               left: 885.w,
               child: _bigCircle()),
-          Positioned(left: 28.w, right: 54.w, top: 22, child: _headerSection()),
           Positioned(
-              top: 67.w.aspectHeight(67.w, 292),
+              left: 28.w,
+              right: 54.w,
+              top: 22,
+              child: _headerSection(context: context)),
+          Positioned(
+              top: (292 / 911).relativeToHeight(containerH),
               left: 67.w,
-              child: _openingText()),
+              child: _openingText(context: context)),
           Positioned(
-              top: 105.w.aspectHeight(105.w, 202),
+              top: (202 / 911).relativeToHeight(containerH),
               right: 105.w,
               child: customImage(
                   imagePath: ImagePath.iphone,
-                  height: 323.w.aspectHeight(323.w, 598),
+                  height: (598 / 911).relativeToHeight(containerH),
                   width: 323.w))
         ],
       ),
     );
   }
 
-  Widget _headerSection() {
+  Widget _headerSection({required BuildContext context}) {
+    final contactDimensions = OriginalDimension(
+      width: 272,
+      height: 180,
+    );
+
+    final containerW = 272.w;
+    final containerH = containerW / contactDimensions.aspectRatio;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         customImage(
             imagePath: ImagePath.logo,
-            height: 272.w.aspectHeight(272.w, 178),
+            height: (178 / 180).relativeToHeight(containerH),
             width: 272.w),
         InkWell(
             onTap: () {
               scrollToTarget(_visionKey);
             },
             child: customText(
-                text: "Our Vision", font: 25.fSize, color: AppColors.rgba28)),
+                text: S.of(context).ourVision,
+                font: 25.fSize,
+                color: AppColors.rgba28)),
         InkWell(
             onTap: () {
               scrollToTarget(_discoverKey);
             },
             child: customText(
-                text: "Features", font: 25.fSize, color: AppColors.rgba28)),
-        customText(text: "English/繁", font: 25.fSize, color: AppColors.rgba28),
+                text: S.of(context).features,
+                font: 25.fSize,
+                color: AppColors.rgba28)),
         InkWell(
             onTap: () {
-              print("hi");
+              onLanguageChange();
+            },
+            child: customText(
+                text: "English/繁", font: 25.fSize, color: AppColors.rgba28)),
+        InkWell(
+            onTap: () {
               scrollToTarget(_contactKey);
             },
-            child: _contactUs())
+            child: _contactUs(context: context))
       ],
     );
   }
 
-  Widget _contactUs() {
+  Widget _contactUs({required BuildContext context}) {
+    final contactDimensions = OriginalDimension(
+      width: 206,
+      height: 60,
+    );
+
+    final containerW = 206.w;
+    final containerH = containerW / contactDimensions.aspectRatio;
     return Container(
-      width: 206.w,
-      height: 206.w.aspectHeight(206.w, 60),
+      width: containerW,
+      height: containerH,
       decoration: BoxDecoration(
           color: AppColors.rgba28, borderRadius: BorderRadius.circular(50)),
       child: Center(
           child: customText(
-              text: "Contact Us",
+              text: S.of(context).contactUs,
               font: 25.fSize,
               textAlign: TextAlign.center,
               height: 1,
@@ -837,7 +913,7 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-  Widget _openingText() {
+  Widget _openingText({required BuildContext context}) {
     return Row(
       children: [
         Container(
@@ -849,8 +925,9 @@ class LandingPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               customText(
-                text:
-                    "A Smarter Way to Make Learning Efficient           for Your Child",
+                text: S
+                    .of(context)
+                    .aSmarterWayToMakeLearningEfficientForYourChild,
                 font: 65.fSize,
                 fontWeight: FontWeight.w800, // Font weight 800 (Bold)
                 color: Colors.black, // Text color (black)
@@ -874,7 +951,7 @@ class LandingPage extends StatelessWidget {
                   children: [
                     TextSpan(
                       text:
-                          "Designed with elite parents in mind, our platform assists you to make informed decisions about your child's extracurricular activities and their growth.\n\n",
+                          "${S.of(context).designedWithEliteParentsInMindOurPlatformAssistsYouToMakeInformedDecisionsAboutYourChildsExtracurricularActivitiesAndTheirGrowth}\n\n",
                       style: TextStyle(
                           fontSize: 31.fSize,
                           fontFamily: 'SF Pro Display',
@@ -891,7 +968,7 @@ class LandingPage extends StatelessWidget {
                           color: Colors.black),
                     ),
                     TextSpan(
-                      text: "Learn by quality, not quantity.\n",
+                      text: "${S.of(context).learnByQualityNotQuantity}\n",
                       style: TextStyle(
                           fontSize: 31.fSize,
                           fontWeight: FontWeight.w700,
@@ -908,43 +985,54 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-  Widget _vision({required GlobalKey key}) {
+  Widget _vision({required GlobalKey key, required BuildContext context}) {
+    final contactDimensions = OriginalDimension(
+      width: 1355,
+      height: 806,
+    );
+    final boxDimensions = OriginalDimension(width: 1355, height: 570);
+    final padding = 43.w;
+    final containerW = SizeConfig.screenWidth - 2 * padding;
+    final containerH = containerW / contactDimensions.aspectRatio;
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 43.w),
+      padding: EdgeInsets.symmetric(horizontal: padding),
       child: SizedBox(
         key: key,
-        width: 1355.w,
-        height: 1355.w.aspectHeight(1355.w, 806),
+        width: containerW,
+        height: containerH,
         child: Stack(
           children: [
             Container(
-              width: 1355.w,
-              height: 1355.w.aspectHeight(1355.w, 570),
+              width: containerW,
+              height: containerW / boxDimensions.aspectRatio,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [AppColors.rgba63, AppColors.rgba73],
-                    stops: [0.0, 1.0],
-                  )),
+                borderRadius: BorderRadius.circular(20),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [AppColors.rgba63, AppColors.rgba73],
+                  stops: [0.0, 1.0],
+                ),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 41,
+                    height: 41.h,
                   ),
                   Center(
                     child: customText(
-                        text: "We Made Parenting Easier.",
-                        font: 50.fSize,
-                        height: 68.5.fSize / 50.fSize,
-                        letterSpacing: 0.1 * 50.fSize,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.rgba28),
+                      text: S.of(context).weMadeParentingEasier,
+                      font: 50.fSize,
+                      height: 68.5.fSize / 50.fSize,
+                      letterSpacing: 0.1 * 50.fSize,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.rgba28,
+                    ),
                   ),
                   SizedBox(
-                    height: 25,
+                    height: 95.h,
                   ),
                   Center(
                     child: RichText(
@@ -952,51 +1040,66 @@ class LandingPage extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text:
-                                "We simplify the learning decision and assist you to gain balance in life.\n",
+                            text: S
+                                .of(context)
+                                .weSimplifiesTheLearningDecisionAndAssistYouToGainBalanceInLife1,
                             style: TextStyle(
-                                fontSize: 25.fSize,
-                                fontWeight: FontWeight.w700,
-                                height: 34.25.fSize / 50.fSize,
-                                color: AppColors.rgba28),
+                              fontSize: 25.fSize,
+                              fontWeight: FontWeight.w700,
+                              height: 34.25.fSize / 50.fSize,
+                              color: AppColors.rgba28,
+                            ),
                           ),
                           TextSpan(
-                            text:
-                                "The clear way to track your child’s strengths and provide the support you need as a parent.",
+                            text: S
+                                .of(context)
+                                .theClearWayToTrackYourChildsStrengthsAndProvideTheSupportYouNeedAsAParent,
                             style: TextStyle(
-                                fontSize: 25.fSize,
-                                fontWeight: FontWeight.w700,
-                                height: 1.5,
-                                color: AppColors.rgba28),
+                              fontSize: 25.fSize,
+                              fontWeight: FontWeight.w700,
+                              height: 1.5,
+                              color: AppColors.rgba28,
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 51,
+                    height: 51.h,
                   ),
                 ],
               ),
             ),
             Positioned(
-                top: 273,
-                left: 25.w,
-                right: 25.w,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _vidionPicandText(
-                        imagePath: ImagePath.vision1,
-                        text: "Receive Performance Report after Lesson"),
-                    _vidionPicandText(
-                        imagePath: ImagePath.vision2,
-                        text: "Child Assessment & Parent Training"),
-                    _vidionPicandText(
-                        imagePath: ImagePath.vision3,
-                        text: "Free Monthly STEAM Craft")
-                  ],
-                ))
+              top:
+                  (254 / contactDimensions.height).relativeToHeight(containerH),
+              left: 25.w,
+              right: 25.w,
+              bottom: 0,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: _vidionPicandText(
+                      imagePath: ImagePath.vision1,
+                      text: S.of(context).receivePerformanceReportAfterLesson,
+                    ),
+                  ),
+                  Expanded(
+                    child: _vidionPicandText(
+                      imagePath: ImagePath.vision2,
+                      text: S.of(context).childAssessmentParentTraining,
+                    ),
+                  ),
+                  Expanded(
+                    child: _vidionPicandText(
+                      imagePath: ImagePath.vision3,
+                      text: S.of(context).freeMonthlySteamCraft,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -1004,13 +1107,33 @@ class LandingPage extends StatelessWidget {
   }
 
   Widget _vidionPicandText({required String imagePath, required String text}) {
+    final contactDimensions = OriginalDimension(
+      width: 408,
+      height: 552,
+    );
+    final containerw =
+        SizeConfig.screenWidth * 0.28333; // Adjust for padding/spacer
+    final containerH = containerw / contactDimensions.aspectRatio;
+    print(SizeConfig.screenWidth);
+    print(containerw);
+    print(containerH);
     return Container(
-      padding: EdgeInsets.only(top: 57, left: 25.w, right: 25.w),
-      width: 408.w,
-      height: 408.w.aspectHeight(409.w, 552),
-      decoration:
-          BoxDecoration(image: DecorationImage(image: AssetImage(imagePath))),
-      child: customText(
+      padding: EdgeInsets.only(
+          top: (57 / 552).relativeToHeight(containerH),
+          left: 10.w,
+          right: 10.w),
+      width: containerw,
+      height: containerH,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage(
+              imagePath,
+            ),
+            fit: BoxFit.cover),
+      ),
+      child: SizedBox(
+        width: 372.w,
+        child: customText(
           text: text,
           font: 30.fSize,
           fontWeight: FontWeight.w700,
@@ -1019,7 +1142,9 @@ class LandingPage extends StatelessWidget {
           color: Colors.white,
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 

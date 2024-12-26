@@ -1,21 +1,47 @@
 import 'package:classz_web/utils/app_utils.dart';
 import 'package:classz_web/view/screen/landingPage.dart';
 import 'package:flutter/material.dart';
-// import 'dart:ui_web' as ui_web;
+import 'package:flutter_localizations/flutter_localizations.dart';
+import './generated/l10n.dart';
 
 void main() {
-  // ui_web.debugEmulateFlutterTesterEnvironment = true;
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale _locale = Locale('en', ''); // Default locale is English
+
+  // Function to switch the language
+  void _switchLanguage() {
+    setState(() {
+      // Toggle between 'en' and 'zh'
+      _locale = _locale.languageCode == 'en' ? Locale('zh', '') : Locale('en', '');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LandingPage(),
+      supportedLocales: const [
+        Locale('en', ''), // English
+        Locale('zh', ''), // Mandarin
+      ],
+      locale: _locale, // Dynamically set the locale
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        S.delegate, 
+      ],
+      home: LandingPage(onLanguageChange: _switchLanguage), // Pass language change function to LandingPage
     );
   }
 }
