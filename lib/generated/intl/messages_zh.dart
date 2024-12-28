@@ -23,79 +23,82 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aSmarterWayToMakeLearningEfficientForYourChild":
-            MessageLookupByLibrary.simpleMessage("为您的孩子提供更高效学习的智能方式"),
-        "access": MessageLookupByLibrary.simpleMessage("a"),
-        "and": MessageLookupByLibrary.simpleMessage("a"),
-        "anythingInMind": MessageLookupByLibrary.simpleMessage("有什么想法吗？"),
-        "chatWithUs": MessageLookupByLibrary.simpleMessage("与我们聊天"),
+            MessageLookupByLibrary.simpleMessage("父母的心思讓你孩子的課外教育更顯成效"),
+        "access": MessageLookupByLibrary.simpleMessage("享受各種折扣或免費的孩童評估，包括"),
+        "and": MessageLookupByLibrary.simpleMessage("和"),
+        "anythingInMind": MessageLookupByLibrary.simpleMessage("有什麼想法嗎？ "),
+        "chatWithUs": MessageLookupByLibrary.simpleMessage("跟我們聊聊吧"),
         "childAssessmentParentTraining":
-            MessageLookupByLibrary.simpleMessage("儿童评估与家长培训"),
-        "childDevelopment": MessageLookupByLibrary.simpleMessage("a"),
-        "confident": MessageLookupByLibrary.simpleMessage("a"),
-        "contactUs": MessageLookupByLibrary.simpleMessage("联系我们"),
-        "deliveredToYourHome": MessageLookupByLibrary.simpleMessage("a"),
-        "designedBy": MessageLookupByLibrary.simpleMessage("a"),
+            MessageLookupByLibrary.simpleMessage("孩童評估與家長培訓"),
+        "childDevelopment": MessageLookupByLibrary.simpleMessage("專家設計，"),
+        "confident": MessageLookupByLibrary.simpleMessage("更針對性"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("聯繫我們"),
+        "deliveredToYourHome": MessageLookupByLibrary.simpleMessage("免費訂閱"),
+        "designedBy": MessageLookupByLibrary.simpleMessage("實驗套件均由"),
         "designedWithEliteParentsInMindOurPlatformAssistsYouToMakeInformedDecisionsAboutYourChildsExtracurricularActivitiesAndTheirGrowth":
             MessageLookupByLibrary.simpleMessage(
-                "专为精英父母设计，我们的平台帮助您对孩子的课外活动和成长做出明智决策。"),
-        "discoverOurPlatform": MessageLookupByLibrary.simpleMessage("发现我们的平台"),
+                "專為新一代精英家長設計，我們的平台協助您為孩子的課外活動和成長做出明智的決策。"),
+        "discoverOurPlatform": MessageLookupByLibrary.simpleMessage("探索我們的平台"),
         "emailAddress":
-            MessageLookupByLibrary.simpleMessage("classzhk@gmail.com"),
+            MessageLookupByLibrary.simpleMessage("classzhk@classz.co"),
         "english": MessageLookupByLibrary.simpleMessage("英文"),
         "enjoyEngagingFamilyActivitiesToCreate":
-            MessageLookupByLibrary.simpleMessage("a"),
+            MessageLookupByLibrary.simpleMessage("享受多元的親子活動，創造"),
         "enrollInExtraCurriculumClassWithInformedDetails":
-            MessageLookupByLibrary.simpleMessage("通过详细信息报名课外课程"),
-        "everyMonth": MessageLookupByLibrary.simpleMessage("a,"),
-        "expertledworkshop": MessageLookupByLibrary.simpleMessage("a "),
+            MessageLookupByLibrary.simpleMessage("簡潔資料，了解各課外課程特色"),
+        "everyMonth": MessageLookupByLibrary.simpleMessage("STEAM手作實驗套件，,"),
+        "expertledworkshop":
+            MessageLookupByLibrary.simpleMessage("專家領導的家長工作坊，"),
         "features": MessageLookupByLibrary.simpleMessage("功能"),
         "focusedonparentingtoSupport":
-            MessageLookupByLibrary.simpleMessage("a"),
+            MessageLookupByLibrary.simpleMessage("支援你的需要"),
         "freeMonthlySteamCraft":
-            MessageLookupByLibrary.simpleMessage("每月免费STEAM手工艺"),
-        "freeOfCharge": MessageLookupByLibrary.simpleMessage("a"),
+            MessageLookupByLibrary.simpleMessage("每月免費STEAM 手作實驗"),
+        "freeOfCharge": MessageLookupByLibrary.simpleMessage("送到你家中"),
         "groupEachCentersCoachBackgroundAndExpertiseToSelectTheBestFit":
-            MessageLookupByLibrary.simpleMessage("根据各中心教练的背景和专业选择最佳匹配"),
-        "incomparisontopeers": MessageLookupByLibrary.simpleMessage("a"),
-        "join": MessageLookupByLibrary.simpleMessage("a "),
-        "knowYourChilds": MessageLookupByLibrary.simpleMessage("a"),
+            MessageLookupByLibrary.simpleMessage("掌握各教育中心教練背景和專長，選擇最合適的課程"),
+        "incomparisontopeers": MessageLookupByLibrary.simpleMessage("nil"),
+        "join": MessageLookupByLibrary.simpleMessage("定期參與 "),
+        "knowYourChilds": MessageLookupByLibrary.simpleMessage("了解你孩子在同輩中的"),
         "learnByQualityNotQuantity":
-            MessageLookupByLibrary.simpleMessage("以质量而非数量学习。"),
-        "learningdecisions": MessageLookupByLibrary.simpleMessage("a"),
-        "make": MessageLookupByLibrary.simpleMessage("a "),
-        "memorableExperience": MessageLookupByLibrary.simpleMessage("a"),
+            MessageLookupByLibrary.simpleMessage("學習，重質不重量。"),
+        "learningdecisions": MessageLookupByLibrary.simpleMessage("的課程組合和學習決策"),
+        "make": MessageLookupByLibrary.simpleMessage("為孩子做出"),
+        "memorableExperience": MessageLookupByLibrary.simpleMessage("屬於你們的回憶"),
         "monthlySteamCraftKits":
-            MessageLookupByLibrary.simpleMessage("每月STEAM手工套件"),
-        "ourVision": MessageLookupByLibrary.simpleMessage("我们的愿景"),
-        "performanceInsights": MessageLookupByLibrary.simpleMessage("表现洞察"),
-        "performanceLevel": MessageLookupByLibrary.simpleMessage(" a "),
+            MessageLookupByLibrary.simpleMessage("每月 STEAM 手作實驗"),
+        "ourVision": MessageLookupByLibrary.simpleMessage("我們的使命"),
+        "performanceInsights": MessageLookupByLibrary.simpleMessage("深入了解課堂表現"),
+        "performanceLevel": MessageLookupByLibrary.simpleMessage("表現水平"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("+852 5211 8996"),
-        "receiveANewSteamCraftKit":
-            MessageLookupByLibrary.simpleMessage("每月免费送到您家的新STEAM手工套件"),
+        "receiveANewSteamCraftKit": MessageLookupByLibrary.simpleMessage("nil"),
         "receiveBriefPerformanceReportsOnPlatformAfterEachLessonTo":
-            MessageLookupByLibrary.simpleMessage("课后在平台上接收简要表现报告以追踪成长"),
+            MessageLookupByLibrary.simpleMessage("每節課後，透過平台接收課堂表現報告，"),
         "receivePerformanceReportAfterLesson":
-            MessageLookupByLibrary.simpleMessage("每堂課後 接收課堂表現報告"),
+            MessageLookupByLibrary.simpleMessage("每堂課後接收課堂表現報告"),
         "reviewClassSchedulesForEasyPlanning":
-            MessageLookupByLibrary.simpleMessage("查看课程时间表，轻松规划"),
-        "senscreening": MessageLookupByLibrary.simpleMessage("a"),
-        "skilltests": MessageLookupByLibrary.simpleMessage("a"),
-        "smartClassEnrollment": MessageLookupByLibrary.simpleMessage("智能课程报名"),
-        "sparkCreativity": MessageLookupByLibrary.simpleMessage("a"),
-        "stayTuned": MessageLookupByLibrary.simpleMessage("敬请期待。"),
-        "targeted": MessageLookupByLibrary.simpleMessage("a"),
+            MessageLookupByLibrary.simpleMessage("課程時間表一目了然，方便規劃"),
+        "senscreening": MessageLookupByLibrary.simpleMessage("特殊教育需要篩查"),
+        "skilltests": MessageLookupByLibrary.simpleMessage("技能測試"),
+        "smartClassEnrollment":
+            MessageLookupByLibrary.simpleMessage("智能課外活動報名"),
+        "sparkCreativity": MessageLookupByLibrary.simpleMessage("激發創造力，"),
+        "stayTuned": MessageLookupByLibrary.simpleMessage("敬請期待。"),
+        "targeted": MessageLookupByLibrary.simpleMessage("nil"),
         "theClearWayToTrackYourChildsStrengthsAndProvideTheSupportYouNeedAsAParent":
-            MessageLookupByLibrary.simpleMessage("清晰的方式追踪孩子的优势，为您提供所需的支持。"),
+            MessageLookupByLibrary.simpleMessage("簡潔清晰，掌握孩子的強弱項，並提供家長所需的重點支援。"),
         "toBeLaunchedInLate2025":
-            MessageLookupByLibrary.simpleMessage("将在2025年年底推出。"),
-        "trackgrowth": MessageLookupByLibrary.simpleMessage("a"),
-        "trainingsAndActivities": MessageLookupByLibrary.simpleMessage("培训与活动"),
+            MessageLookupByLibrary.simpleMessage("將於2025年尾推出。"),
+        "trackgrowth": MessageLookupByLibrary.simpleMessage("追蹤學習進度"),
+        "trainingsAndActivities":
+            MessageLookupByLibrary.simpleMessage("孩童評估與家長培訓"),
         "weMadeParentingEasier":
             MessageLookupByLibrary.simpleMessage("让育儿变得更简单。"),
         "weSimplifiesTheLearningDecisionAndAssistYouToGainBalanceInLife1":
             MessageLookupByLibrary.simpleMessage("我们简化学习决策，帮助您在生活中找到平衡。\n"),
         "weSimplifiesTheLearningDecisionAndAssistYouToGainBalanceInLife2":
-            MessageLookupByLibrary.simpleMessage("簡潔清晰，掌握孩子的強弱項，並提供家長所需的重點支援。"),
-        "withFunInteractiveProjects": MessageLookupByLibrary.simpleMessage("a")
+            MessageLookupByLibrary.simpleMessage("我们简化学习决策，帮助您在生活中找到平衡。"),
+        "withFunInteractiveProjects":
+            MessageLookupByLibrary.simpleMessage("感受在遊玩學習的樂趣")
       };
 }

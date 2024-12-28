@@ -244,6 +244,78 @@ class S {
     );
   }
 
+  // skipped getter for the 'enrollinextra-curriculumclasswith' key
+
+  /// `informed details`
+  String get informedDetails {
+    return Intl.message(
+      'informed details',
+      name: 'informedDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grasp each center's coach`
+  String get graspeachcenterscoachbackgroundandexpertisetoselectthebestfit {
+    return Intl.message(
+      'Grasp each center\'s coach',
+      name: 'graspeachcenterscoachbackgroundandexpertisetoselectthebestfit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `background and expertise`
+  String get backgroundAndExpertise {
+    return Intl.message(
+      'background and expertise',
+      name: 'backgroundAndExpertise',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to select the best fit`
+  String get toSelectTheBestFit {
+    return Intl.message(
+      'to select the best fit',
+      name: 'toSelectTheBestFit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review`
+  String get review {
+    return Intl.message(
+      'Review',
+      name: 'review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `class schedules`
+  String get classSchedules {
+    return Intl.message(
+      'class schedules',
+      name: 'classSchedules',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `for easy planning`
+  String get forEasyPlanning {
+    return Intl.message(
+      'for easy planning',
+      name: 'forEasyPlanning',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Performance Insights`
   String get performanceInsights {
     return Intl.message(
@@ -584,10 +656,10 @@ class S {
     );
   }
 
-  /// `classzhk@gmail.com`
+  /// `classzhk@classz.co`
   String get emailAddress {
     return Intl.message(
-      'classzhk@gmail.com',
+      'classzhk@classz.co',
       name: 'emailAddress',
       desc: '',
       args: [],

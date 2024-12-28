@@ -191,6 +191,7 @@ class ImagePath {
   static const discover1 = "lib/assets/images/discover1.png";
   static const discover2 = "lib/assets/images/discover2.png";
   static const discover3 = "lib/assets/images/discover3.png";
+  static const discover4="lib/assets/images/discover4.png";
   static const qr = "lib/assets/images/qr.png";
   static const phone1 = "lib/assets/images/anything1.png";
   static const phone2 = "lib/assets/images/anything2.png";

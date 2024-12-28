@@ -18,6 +18,16 @@
   "enrollInExtraCurriculumClassWithInformedDetails": "Enroll in extra-curriculum class with informed details",
   "groupEachCentersCoachBackgroundAndExpertiseToSelectTheBestFit": "Group each center's coach background and expertise to select the best fit",
   "reviewClassSchedulesForEasyPlanning": "Review class schedules for easy planning",
+  "smartClassEnrollment":"Smart Class Enrollment",
+  "enrollinextra-curriculumclasswith":"Enroll in extra-curriculum class with",
+  "informedDetails":"informed details",
+  "graspeachcenterscoachbackgroundandexpertisetoselectthebestfit":"Grasp each center's coach",
+  "backgroundAndExpertise":"background and expertise",
+  "toSelectTheBestFit":"to select the best fit",
+  "review":"Review",
+  "classSchedules":"class schedules",
+  "forEasyPlanning": "for easy planning",
+
   "performanceInsights": "Performance Insights",
   "receiveBriefPerformanceReportsOnPlatformAfterEachLessonTo": "Receive brief performance reports on platform after each lesson to track growth",
   "trackgrowth":"track growth",
@@ -52,5 +62,5 @@
   "anythingInMind": "Anything in mind?",
   "chatWithUs": "Chat with Us",
   "phoneNumber": "+852 5211 8996",
-  "emailAddress": "classzhk@gmail.com"
+  "emailAddress": "classzhk@classz.co"
 }

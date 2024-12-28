@@ -30,11 +30,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "anythingInMind":
             MessageLookupByLibrary.simpleMessage("Anything in mind?"),
+        "backgroundAndExpertise":
+            MessageLookupByLibrary.simpleMessage("background and expertise"),
         "chatWithUs": MessageLookupByLibrary.simpleMessage("Chat with Us"),
         "childAssessmentParentTraining": MessageLookupByLibrary.simpleMessage(
             "Child Assessment & Parent Training"),
         "childDevelopment":
             MessageLookupByLibrary.simpleMessage("child development experts"),
+        "classSchedules":
+            MessageLookupByLibrary.simpleMessage("class schedules"),
         "confident": MessageLookupByLibrary.simpleMessage("confident"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "deliveredToYourHome":
@@ -46,7 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "discoverOurPlatform":
             MessageLookupByLibrary.simpleMessage("Discover Our Platform"),
         "emailAddress":
-            MessageLookupByLibrary.simpleMessage("classzhk@gmail.com"),
+            MessageLookupByLibrary.simpleMessage("classzhk@classz.co"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "enjoyEngagingFamilyActivitiesToCreate":
             MessageLookupByLibrary.simpleMessage(
@@ -60,14 +64,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "features": MessageLookupByLibrary.simpleMessage("Features"),
         "focusedonparentingtoSupport": MessageLookupByLibrary.simpleMessage(
             "focused on parenting to support your need"),
+        "forEasyPlanning":
+            MessageLookupByLibrary.simpleMessage("for easy planning"),
         "freeMonthlySteamCraft":
             MessageLookupByLibrary.simpleMessage("Free Monthly\n STEAM Craft"),
         "freeOfCharge": MessageLookupByLibrary.simpleMessage("free of charge"),
+        "graspeachcenterscoachbackgroundandexpertisetoselectthebestfit":
+            MessageLookupByLibrary.simpleMessage("Grasp each center\'s coach"),
         "groupEachCentersCoachBackgroundAndExpertiseToSelectTheBestFit":
             MessageLookupByLibrary.simpleMessage(
                 "Group each center\'s coach background and expertise to select the best fit"),
         "incomparisontopeers":
             MessageLookupByLibrary.simpleMessage("in comparison to peers"),
+        "informedDetails":
+            MessageLookupByLibrary.simpleMessage("informed details"),
         "join": MessageLookupByLibrary.simpleMessage("Join"),
         "knowYourChilds":
             MessageLookupByLibrary.simpleMessage("Know your child\'s"),
@@ -94,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "receivePerformanceReportAfterLesson":
             MessageLookupByLibrary.simpleMessage(
                 "Receive Performance Report after Lesson"),
+        "review": MessageLookupByLibrary.simpleMessage("Review"),
         "reviewClassSchedulesForEasyPlanning":
             MessageLookupByLibrary.simpleMessage(
                 "Review class schedules for easy planning"),
@@ -110,6 +121,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "The clear way to track your child\'s strengths and provide the support you need as a parent."),
         "toBeLaunchedInLate2025": MessageLookupByLibrary.simpleMessage(
             "To be Launched in late 2025."),
+        "toSelectTheBestFit":
+            MessageLookupByLibrary.simpleMessage("to select the best fit"),
         "trackgrowth": MessageLookupByLibrary.simpleMessage("track growth"),
         "trainingsAndActivities":
             MessageLookupByLibrary.simpleMessage("Trainings & Activities"),

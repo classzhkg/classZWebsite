@@ -4,6 +4,14 @@ import 'package:classz_web/utils/app_utils.dart';
 import 'package:classz_web/view/theme/app_colors.dart';
 import 'package:classz_web/view/widgets/customSvg.dart';
 import 'package:classz_web/view/widgets/customText.dart';
+import 'package:classz_web/view/widgets/discoverWidget1_en.dart';
+import 'package:classz_web/view/widgets/discoverWidget1_zh.dart';
+import 'package:classz_web/view/widgets/discoverWidget2_en.dart';
+import 'package:classz_web/view/widgets/discoverWidget2_zh.dart';
+import 'package:classz_web/view/widgets/discoverWidget3_en.dart';
+import 'package:classz_web/view/widgets/discoverWidget3_zh.dart';
+import 'package:classz_web/view/widgets/discoverWidget4_en.dart';
+import 'package:classz_web/view/widgets/disoverWidget4_zh.dart';
 import 'package:flutter/material.dart';
 import 'package:classz_web/view/widgets/customImage.dart';
 
@@ -24,7 +32,8 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-
+    final currentLocale = Localizations.localeOf(context);
+    print(currentLocale);
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         return SingleChildScrollView(
@@ -39,7 +48,8 @@ class LandingPage extends StatelessWidget {
               SizedBox(
                 height: 203.h,
               ),
-              _discover(key: _discoverKey, context: context),
+              _discover(
+                  key: _discoverKey, context: context, local: currentLocale),
               SizedBox(
                 height: 203.h,
               ),
@@ -83,7 +93,8 @@ class LandingPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   customText(
-                      text: "${S.of(context).anythingInMind}\n${S.of(context).chatWithUs}",
+                      text:
+                          "${S.of(context).anythingInMind}\n${S.of(context).chatWithUs}",
                       font: 0.094.fontSize(containerH), // 40/424
                       height: 54.8 / 40,
                       color: AppColors.rgba28,
@@ -108,7 +119,7 @@ class LandingPage extends StatelessWidget {
                               imagePath: ImagePath.whatsappSvg,
                               size: 0.075.relativeToHeight(
                                   containerH), // 32/424 ≈ 0.075
-                              text: "+852 5211 8996"),
+                              text: S.of(context).phoneNumber),
                           SizedBox(
                               height: 0.038.relativeToHeight(
                                   containerH)), // 16/424 ≈ 0.038
@@ -116,7 +127,7 @@ class LandingPage extends StatelessWidget {
                               imagePath: ImagePath.mailSvg,
                               size: 0.049.relativeToHeight(
                                   containerH), // 21/424 ≈ 0.049
-                              text: "classzhk@gmail.com")
+                              text: S.of(context).emailAddress)
                         ],
                       )
                     ],
@@ -162,6 +173,9 @@ class LandingPage extends StatelessWidget {
       children: [
         customSvg(
             imagePath: imagePath, height: size, width: size, color: color),
+        SizedBox(
+          width: 15.w,
+        ),
         customText(
             text: text,
             font: 30.fSize,
@@ -195,7 +209,10 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-  Widget _discover({required GlobalKey key, required BuildContext context}) {
+  Widget _discover(
+      {required GlobalKey key,
+      required Locale local,
+      required BuildContext context}) {
     return Column(
       key: key,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,20 +228,65 @@ class LandingPage extends StatelessWidget {
         SizedBox(
           height: 100.h,
         ),
-        _discoverWidget1(context: context),
+        _discoverWidget1(context: context, local: local),
         SizedBox(
           height: 100.h,
         ),
-        _discoverWidget2(context: context),
+        _discoverWidget2(context: context, local: local),
         SizedBox(
           height: 100.h,
         ),
-        _discoverWidget3(context: context),
+        _discoverWidget3(context: context, local: local),
+        SizedBox(
+          height: 100.h,
+        ),
+        _discoverWidget4(context: context, local: local),
       ],
     );
   }
 
-  Widget _discoverWidget1({required BuildContext context}) {
+  Widget _discoverWidget1(
+      {required BuildContext context, required Locale local}) {
+    final contactDimensions = OriginalDimension(
+      width: 1440,
+      height: 500,
+    );
+    final containerw = SizeConfig.screenWidth;
+    final containerH = containerw / contactDimensions.aspectRatio;
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 98.5.w),
+      child: SizedBox(
+        width: containerw,
+        height: containerH,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                customText(
+                    text: S.of(context).smartClassEnrollment,
+                    font: 45.fSize,
+                    color: AppColors.rgba28),
+                SizedBox(
+                  height: 40.h,
+                ),
+                local.languageCode == 'en'
+                    ? discoverWidget1En(context: context)
+                    : discoverWidget1Zh(context: context)
+              ],
+            ),
+            customImage(
+                imagePath: ImagePath.discover1, height: 601.w, width: 601.w)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _discoverWidget2(
+      {required BuildContext context, required Locale local}) {
     final contactDimensions = OriginalDimension(
       width: 1440,
       height: 500,
@@ -248,172 +310,23 @@ class LandingPage extends StatelessWidget {
                     font: 45.fSize,
                     color: AppColors.rgba28),
                 SizedBox(
-                  height: 40,
+                  height: 40.h,
                 ),
-                SizedBox(
-                  width: 566.w,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Icon(
-                          Icons.thumb_up_alt,
-                          color: AppColors.rgba28,
-                          size: 28.w,
-                        ),
-                      ),
-                      SizedBox(
-                          width: 8.w), // Add spacing between Icon and RichText
-                      Expanded(
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text:
-                                    S.of(context).receiveBriefPerformanceReportsOnPlatformAfterEachLessonTo,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextSpan(
-                                text: " ${S.of(context).trackgrowth}",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
-                          maxLines: 2, // Restrict to a maximum number of lines
-                          overflow: TextOverflow
-                              .ellipsis, // Handle overflow with ellipsis
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 566.w,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Icon(
-                          Icons.thumb_up_alt,
-                          color: AppColors.rgba28,
-                          size: 28.w,
-                        ),
-                      ),
-                      SizedBox(
-                          width: 8.w), // Add spacing between Icon and RichText
-                      Expanded(
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: S.of(context).knowYourChilds,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextSpan(
-                                text: S.of(context).performanceLevel,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              TextSpan(
-                                text: S.of(context).incomparisontopeers,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          maxLines: 2, // Restrict to a maximum number of lines
-                          overflow: TextOverflow
-                              .ellipsis, // Handle overflow with ellipsis
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 566.w,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Icon(
-                          Icons.thumb_up_alt,
-                          color: AppColors.rgba28,
-                          size: 28.w,
-                        ),
-                      ),
-                      SizedBox(
-                          width: 8.w), // Add spacing between Icon and RichText
-                      Expanded(
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: S.of(context).make,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextSpan(
-                                text: "${S.of(context).confident}, ${S.of(context).targeted}",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              TextSpan(
-                                text: " ${S.of(context).learningdecisions}",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                          maxLines: 2, // Restrict to a maximum number of lines
-                          overflow: TextOverflow
-                              .ellipsis, // Handle overflow with ellipsis
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                local.languageCode == 'en'
+                    ? discoverWidget2En(context: context)
+                    : discoverWidget2Zh(context: context)
               ],
             ),
             customImage(
-                imagePath: ImagePath.discover1, height: 601.w, width: 601.w)
+                imagePath: ImagePath.discover2, height: 601.w, width: 601.w)
           ],
         ),
       ),
     );
   }
 
-  Widget _discoverWidget2({required BuildContext context}) {
+  Widget _discoverWidget3(
+      {required BuildContext context, required Locale local}) {
     final contactDimensions = OriginalDimension(
       width: 1440,
       height: 500,
@@ -437,182 +350,23 @@ class LandingPage extends StatelessWidget {
                     font: 45.fSize,
                     color: AppColors.rgba28),
                 SizedBox(
-                  height: 40,
+                  height: 40.h,
                 ),
-                SizedBox(
-                  width: 566.w,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Icon(
-                          Icons.thumb_up_alt,
-                          color: AppColors.rgba28,
-                          size: 28.w,
-                        ),
-                      ),
-                      SizedBox(
-                          width: 8.w), // Add spacing between Icon and RichText
-                      Expanded(
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text:
-                                    S.of(context).access,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextSpan(
-                                text: " ${S.of(context).senscreening}",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              TextSpan(
-                                text: " ${S.of(context).and} ",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextSpan(
-                                text: S.of(context).skilltests,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
-                          maxLines: 2, // Restrict to a maximum number of lines
-                          overflow: TextOverflow
-                              .ellipsis, // Handle overflow with ellipsis
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 566.w,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Icon(
-                          Icons.thumb_up_alt,
-                          color: AppColors.rgba28,
-                          size: 28.w,
-                        ),
-                      ),
-                      SizedBox(
-                          width: 8.w), // Add spacing between Icon and RichText
-                      Expanded(
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: "${S.of(context).join} ",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextSpan(
-                                text: "${S.of(context).expertledworkshop} ",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    S.of(context).focusedonparentingtoSupport,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          maxLines: 2, // Restrict to a maximum number of lines
-                          overflow: TextOverflow
-                              .ellipsis, // Handle overflow with ellipsis
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 566.w,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Icon(
-                          Icons.thumb_up_alt,
-                          color: AppColors.rgba28,
-                          size: 28.w,
-                        ),
-                      ),
-                      SizedBox(
-                          width: 8.w), // Add spacing between Icon and RichText
-                      Expanded(
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text:
-                                    S.of(context).enjoyEngagingFamilyActivitiesToCreate,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextSpan(
-                                text: " ${S.of(context).memorableExperience}",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
-                          maxLines: 2, // Restrict to a maximum number of lines
-                          overflow: TextOverflow
-                              .ellipsis, // Handle overflow with ellipsis
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                local.languageCode == 'en'
+                    ? discoverWidget3En(context: context)
+                    : discoverWidget3Zh(context: context)
               ],
             ),
             customImage(
-                imagePath: ImagePath.discover2, height: 601.w, width: 601.w)
+                imagePath: ImagePath.discover3, height: 601.w, width: 601.w)
           ],
         ),
       ),
     );
   }
 
-  Widget _discoverWidget3({required BuildContext context}) {
+  Widget _discoverWidget4(
+      {required BuildContext context, required Locale local}) {
     final contactDimensions = OriginalDimension(
       width: 1440,
       height: 500,
@@ -636,165 +390,15 @@ class LandingPage extends StatelessWidget {
                     font: 45.fSize,
                     color: AppColors.rgba28),
                 SizedBox(
-                  height: 40,
+                  height: 40.h,
                 ),
-                SizedBox(
-                  width: 566.w,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Icon(
-                          Icons.thumb_up_alt,
-                          color: AppColors.rgba28,
-                          size: 28.w,
-                        ),
-                      ),
-                      SizedBox(
-                          width: 8.w), // Add spacing between Icon and RichText
-                      Expanded(
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: S.of(context).receiveANewSteamCraftKit,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextSpan(
-                                text: " ${S.of(context).deliveredToYourHome} ",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              TextSpan(
-                                text: "${S.of(context).everyMonth} ",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextSpan(
-                                text: S.of(context).freeOfCharge,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
-                          maxLines: 2, // Restrict to a maximum number of lines
-                          overflow: TextOverflow
-                              .ellipsis, // Handle overflow with ellipsis
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 566.w,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Icon(
-                          Icons.thumb_up_alt,
-                          color: AppColors.rgba28,
-                          size: 28.w,
-                        ),
-                      ),
-                      SizedBox(
-                          width: 8.w), // Add spacing between Icon and RichText
-                      Expanded(
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: S.of(context).sparkCreativity,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    " ${S.of(context).withFunInteractiveProjects}",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          maxLines: 2, // Restrict to a maximum number of lines
-                          overflow: TextOverflow
-                              .ellipsis, // Handle overflow with ellipsis
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 566.w,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Icon(
-                          Icons.thumb_up_alt,
-                          color: AppColors.rgba28,
-                          size: 28.w,
-                        ),
-                      ),
-                      SizedBox(
-                          width: 8.w), // Add spacing between Icon and RichText
-                      Expanded(
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: S.of(context).designedBy,
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextSpan(
-                                text: " ${S.of(context).childDevelopment}",
-                                style: TextStyle(
-                                  fontSize: 25.fSize,
-                                  height: 34.25.fSize / 25.fSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
-                          maxLines: 2, // Restrict to a maximum number of lines
-                          overflow: TextOverflow
-                              .ellipsis, // Handle overflow with ellipsis
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                local.languageCode == 'en'
+                    ? discoverWidget4En(context: context)
+                    : discoverWidget4Zh(context: context)
               ],
             ),
             customImage(
-                imagePath: ImagePath.discover3, height: 601.w, width: 601.w)
+                imagePath: ImagePath.discover4, height: 601.w, width: 601.w)
           ],
         ),
       ),
@@ -1114,9 +718,7 @@ class LandingPage extends StatelessWidget {
     final containerw =
         SizeConfig.screenWidth * 0.28333; // Adjust for padding/spacer
     final containerH = containerw / contactDimensions.aspectRatio;
-    print(SizeConfig.screenWidth);
-    print(containerw);
-    print(containerH);
+
     return Container(
       padding: EdgeInsets.only(
           top: (57 / 552).relativeToHeight(containerH),
@@ -1125,7 +727,15 @@ class LandingPage extends StatelessWidget {
       width: containerw,
       height: containerH,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.w),
+        boxShadow: [BoxShadow(
+          color: Color.fromRGBO(0, 0, 0, 0.4),
+          offset: Offset(0, 0),
+          blurRadius: 15,
+          spreadRadius: 0
+        )],
         image: DecorationImage(
+          
             image: AssetImage(
               imagePath,
             ),
