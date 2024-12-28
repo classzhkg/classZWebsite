@@ -4,6 +4,8 @@ import 'package:classz_web/utils/app_utils.dart';
 import 'package:classz_web/view/theme/app_colors.dart';
 import 'package:classz_web/view/widgets/customSvg.dart';
 import 'package:classz_web/view/widgets/customText.dart';
+import 'package:classz_web/view/widgets/designedWithELite_zh.dart';
+import 'package:classz_web/view/widgets/designedWithElite_en.dart';
 import 'package:classz_web/view/widgets/discoverWidget1_en.dart';
 import 'package:classz_web/view/widgets/discoverWidget1_zh.dart';
 import 'package:classz_web/view/widgets/discoverWidget2_en.dart';
@@ -40,7 +42,7 @@ class LandingPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _allfont(context: context),
+              _allfont(context: context, local: currentLocale),
               SizedBox(
                 height: 203.h,
               ),
@@ -78,8 +80,13 @@ class LandingPage extends StatelessWidget {
       return Container(
         key: key,
         decoration: BoxDecoration(
-            gradient:
-                LinearGradient(colors: [AppColors.rgba63, AppColors.rgba73])),
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [AppColors.rgba761.withOpacity(0.4),
+              AppColors.rgba631.withOpacity(0.4)
+              
+            ])),
         width: containerW,
         height: containerH,
         child: Stack(
@@ -226,19 +233,19 @@ class LandingPage extends StatelessWidget {
               letterSpacing: 0.1),
         ),
         SizedBox(
-          height: 100.h,
+          height: 125.h,
         ),
         _discoverWidget1(context: context, local: local),
         SizedBox(
-          height: 100.h,
+          height: 125.h,
         ),
         _discoverWidget2(context: context, local: local),
         SizedBox(
-          height: 100.h,
+          height: 125.h,
         ),
         _discoverWidget3(context: context, local: local),
         SizedBox(
-          height: 100.h,
+          height: 125.h,
         ),
         _discoverWidget4(context: context, local: local),
       ],
@@ -405,7 +412,7 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-  Widget _allfont({required BuildContext context}) {
+  Widget _allfont({required BuildContext context, required Locale local}) {
     final contactDimensions = OriginalDimension(
       width: 1440,
       height: 911,
@@ -434,7 +441,7 @@ class LandingPage extends StatelessWidget {
           Positioned(
               top: (292 / 911).relativeToHeight(containerH),
               left: 67.w,
-              child: _openingText(context: context)),
+              child: _openingText(context: context, local: local)),
           Positioned(
               top: (202 / 911).relativeToHeight(containerH),
               right: 105.w,
@@ -505,7 +512,7 @@ class LandingPage extends StatelessWidget {
       width: containerW,
       height: containerH,
       decoration: BoxDecoration(
-          color: AppColors.rgba28, borderRadius: BorderRadius.circular(50)),
+          color: AppColors.rgba631, borderRadius: BorderRadius.circular(50)),
       child: Center(
           child: customText(
               text: S.of(context).contactUs,
@@ -517,7 +524,7 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-  Widget _openingText({required BuildContext context}) {
+  Widget _openingText({required BuildContext context, required Locale local}) {
     return Row(
       children: [
         Container(
@@ -534,7 +541,7 @@ class LandingPage extends StatelessWidget {
                     .aSmarterWayToMakeLearningEfficientForYourChild,
                 font: 65.fSize,
                 fontWeight: FontWeight.w800, // Font weight 800 (Bold)
-                color: Colors.black, // Text color (black)
+                color: AppColors.rgba28, // Text color (black)
                 letterSpacing:
                     0.1, // Letter spacing in pixels (0.1em as per your design)
                 //   wordSpacing: 2.0, // Word spacing in pixels
@@ -547,41 +554,11 @@ class LandingPage extends StatelessWidget {
                     3, // Limit text to 3 lines to prevent overflow beyond this
               ),
               SizedBox(
-                height: 50,
+                height: 60.h,
               ),
-              RichText(
-                textAlign: TextAlign.left,
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text:
-                          "${S.of(context).designedWithEliteParentsInMindOurPlatformAssistsYouToMakeInformedDecisionsAboutYourChildsExtracurricularActivitiesAndTheirGrowth}\n\n",
-                      style: TextStyle(
-                          fontSize: 31.fSize,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w500, // Font weight 500
-                          height: 42.47.fSize /
-                              31
-                                  .fSize, // Line height factor (42.47px / 31px = ~1.37)
-
-                          letterSpacing: 0.1
-                              .fSize, // Set letter spacing (adjust as needed)
-                          overflow: TextOverflow
-                              .ellipsis, // Handle overflow with ellipsis
-
-                          color: Colors.black),
-                    ),
-                    TextSpan(
-                      text: "${S.of(context).learnByQualityNotQuantity}\n",
-                      style: TextStyle(
-                          fontSize: 31.fSize,
-                          fontWeight: FontWeight.w700,
-                          height: 42.47.fSize / 31.fSize,
-                          color: Colors.black),
-                    ),
-                  ],
-                ),
-              ),
+              local.languageCode == "en"
+                  ? designedWithEliteEn(context: context)
+                  : designedWithEliteZh(context: context)
             ],
           ),
         ),
@@ -612,10 +589,10 @@ class LandingPage extends StatelessWidget {
               height: containerW / boxDimensions.aspectRatio,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [AppColors.rgba63, AppColors.rgba73],
+                  colors: [AppColors.rgba6303, AppColors.rgba73],
                   stops: [0.0, 1.0],
                 ),
               ),
@@ -711,7 +688,7 @@ class LandingPage extends StatelessWidget {
   }
 
   Widget _vidionPicandText({required String imagePath, required String text}) {
-    final contactDimensions = OriginalDimension(
+    const contactDimensions = OriginalDimension(
       width: 408,
       height: 552,
     );
@@ -728,14 +705,14 @@ class LandingPage extends StatelessWidget {
       height: containerH,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.w),
-        boxShadow: [BoxShadow(
-          color: Color.fromRGBO(0, 0, 0, 0.4),
-          offset: Offset(0, 0),
-          blurRadius: 15,
-          spreadRadius: 0
-        )],
+        boxShadow: const [
+          BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.4),
+              offset: Offset(0, 0),
+              blurRadius: 15,
+              spreadRadius: 0)
+        ],
         image: DecorationImage(
-          
             image: AssetImage(
               imagePath,
             ),
@@ -762,15 +739,15 @@ class LandingPage extends StatelessWidget {
     return Container(
       width: 471.w,
       height: 471.w,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
             transform: GradientRotation(
                 202.66 * 3.1416 / 180), // Convert angle to radians
             colors: [
-              Color.fromRGBO(128, 255, 232, 0.4), // rgba(128, 255, 232, 0.4)
-              Color.fromRGBO(255, 241, 208, 0.4), // rgba(255, 241, 208, 0.4)
+              Color.fromRGBO(128, 255, 232, 0.4),
+              Color.fromRGBO(255, 241, 208, 0.4),
             ],
           ),
           shape: BoxShape.circle),
@@ -782,8 +759,8 @@ class LandingPage extends StatelessWidget {
       width: 793.17.w,
       height: 793.17.w,
       decoration: BoxDecoration(
-          gradient:
-              LinearGradient(colors: [AppColors.rgba63, AppColors.rgba76]),
+          gradient: LinearGradient(
+              colors: [AppColors.rgba6303, AppColors.rgba761.withOpacity(0.4)]),
           shape: BoxShape.circle),
     );
   }

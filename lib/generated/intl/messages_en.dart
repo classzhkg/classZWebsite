@@ -44,11 +44,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "deliveredToYourHome":
             MessageLookupByLibrary.simpleMessage("delivered to your home"),
         "designedBy": MessageLookupByLibrary.simpleMessage("Designed by"),
-        "designedWithEliteParentsInMindOurPlatformAssistsYouToMakeInformedDecisionsAboutYourChildsExtracurricularActivitiesAndTheirGrowth":
-            MessageLookupByLibrary.simpleMessage(
-                "Designed with elite parents in mind, our platform assists you to make informed decisions about your child\'s extracurricular activities and their growth."),
+        "designedWith": MessageLookupByLibrary.simpleMessage("Designed with"),
         "discoverOurPlatform":
             MessageLookupByLibrary.simpleMessage("Discover Our Platform"),
+        "eliterPerson": MessageLookupByLibrary.simpleMessage("elite parents"),
         "emailAddress":
             MessageLookupByLibrary.simpleMessage("classzhk@classz.co"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
@@ -74,6 +73,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "groupEachCentersCoachBackgroundAndExpertiseToSelectTheBestFit":
             MessageLookupByLibrary.simpleMessage(
                 "Group each center\'s coach background and expertise to select the best fit"),
+        "inMindOurPlatformAssistsYouToMakeInformedDecisionsAboutYourChildsExtracurricularActivitiesAndTheirGrowth":
+            MessageLookupByLibrary.simpleMessage(
+                "in mind, our platform assists you to make informed decisions about your child\'s extracurricular activities and their growth."),
         "incomparisontopeers":
             MessageLookupByLibrary.simpleMessage("in comparison to peers"),
         "informedDetails":

@@ -100,13 +100,33 @@ class S {
     );
   }
 
-  /// `Designed with elite parents in mind, our platform assists you to make informed decisions about your child's extracurricular activities and their growth.`
-  String
-      get designedWithEliteParentsInMindOurPlatformAssistsYouToMakeInformedDecisionsAboutYourChildsExtracurricularActivitiesAndTheirGrowth {
+  /// `Designed with`
+  String get designedWith {
     return Intl.message(
-      'Designed with elite parents in mind, our platform assists you to make informed decisions about your child\'s extracurricular activities and their growth.',
+      'Designed with',
+      name: 'designedWith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `elite parents`
+  String get eliterPerson {
+    return Intl.message(
+      'elite parents',
+      name: 'eliterPerson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `in mind, our platform assists you to make informed decisions about your child's extracurricular activities and their growth.`
+  String
+      get inMindOurPlatformAssistsYouToMakeInformedDecisionsAboutYourChildsExtracurricularActivitiesAndTheirGrowth {
+    return Intl.message(
+      'in mind, our platform assists you to make informed decisions about your child\'s extracurricular activities and their growth.',
       name:
-          'designedWithEliteParentsInMindOurPlatformAssistsYouToMakeInformedDecisionsAboutYourChildsExtracurricularActivitiesAndTheirGrowth',
+          'inMindOurPlatformAssistsYouToMakeInformedDecisionsAboutYourChildsExtracurricularActivitiesAndTheirGrowth',
       desc: '',
       args: [],
     );
