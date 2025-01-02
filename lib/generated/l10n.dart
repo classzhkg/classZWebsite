@@ -90,10 +90,10 @@ class S {
     );
   }
 
-  /// `A Smarter Way to Make Learning Efficient for Your Child`
+  /// `A Smarter Way to Make\nLearning Efficient\nfor Your Child`
   String get aSmarterWayToMakeLearningEfficientForYourChild {
     return Intl.message(
-      'A Smarter Way to Make Learning Efficient for Your Child',
+      'A Smarter Way to Make\nLearning Efficient\nfor Your Child',
       name: 'aSmarterWayToMakeLearningEfficientForYourChild',
       desc: '',
       args: [],

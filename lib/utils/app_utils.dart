@@ -136,8 +136,14 @@ class SizeConfig {
 extension SizeExtension on num {
   /// Calculate width proportion of screen width
   double get w => (this / FIGMA_DESIGN_WIDTH) * SizeConfig.screenWidth;
-  double get fSize => (this / FIGMA_DESIGN_WIDTH) * SizeConfig.screenWidth;
-double get h => (this / FIGMA_DESIGN_HEIGHT) * SizeConfig.screenHeight;
+
+  double get h => (this / FIGMA_DESIGN_WIDTH) * SizeConfig.screenWidth;
+  double get fSize {
+    double widthFactor = (this / FIGMA_DESIGN_WIDTH) * SizeConfig.screenWidth;
+    double heightFactor = (this / FIGMA_DESIGN_WIDTH) * SizeConfig.screenWidth;
+    return (widthFactor + heightFactor) / 2;
+  }
+
   /// Calculate height proportion of container based on width and aspect ratio
   double proportionalHeight({
     required double originalWidth,
@@ -191,7 +197,7 @@ class ImagePath {
   static const discover1 = "lib/assets/images/discover1.png";
   static const discover2 = "lib/assets/images/discover2.png";
   static const discover3 = "lib/assets/images/discover3.png";
-  static const discover4="lib/assets/images/discover4.png";
+  static const discover4 = "lib/assets/images/discover4.png";
   static const qr = "lib/assets/images/qr.png";
   static const phone1 = "lib/assets/images/anything1.png";
   static const phone2 = "lib/assets/images/anything2.png";
