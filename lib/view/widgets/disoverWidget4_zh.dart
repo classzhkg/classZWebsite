@@ -1,7 +1,5 @@
-import 'package:classz_web/generated/l10n.dart';
 import 'package:classz_web/utils/app_utils.dart';
-import 'package:classz_web/view/theme/app_colors.dart';
-import 'package:classz_web/view/widgets/customText.dart';
+
 import 'package:classz_web/view/widgets/richTextWithIcon.dart';
 import 'package:flutter/material.dart';
 
