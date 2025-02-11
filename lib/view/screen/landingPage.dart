@@ -1,5 +1,6 @@
-import 'package:classz_web/generated/l10n.dart';
 
+import 'package:classz_web/generated/l10n.dart';
+import 'package:classz_web/main.dart';
 import 'package:classz_web/utils/app_utils.dart';
 import 'package:classz_web/view/theme/app_colors.dart';
 import 'package:classz_web/view/widgets/customSvg.dart';
@@ -14,12 +15,18 @@ import 'package:classz_web/view/widgets/discoverWidget3_en.dart';
 import 'package:classz_web/view/widgets/discoverWidget3_zh.dart';
 import 'package:classz_web/view/widgets/discoverWidget4_en.dart';
 import 'package:classz_web/view/widgets/disoverWidget4_zh.dart';
+
 import 'package:flutter/material.dart';
 import 'package:classz_web/view/widgets/customImage.dart';
+import 'package:pixel_perfect/pixel_perfect.dart';
 
 class LandingPage extends StatelessWidget {
   final Function onLanguageChange;
   LandingPage({super.key, required this.onLanguageChange});
+
+  final ScrollController _scrollController = ScrollController();
+
+  final GlobalKey _contactUsKey = GlobalKey();
 
   final GlobalKey _contactKey = GlobalKey();
 
@@ -31,7 +38,7 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     final currentLocale = Localizations.localeOf(context);
-
+    print(currentLocale);
     return SafeArea(
       child: Scaffold(
         body: LayoutBuilder(builder: (context, constraints) {
@@ -66,6 +73,7 @@ class LandingPage extends StatelessWidget {
   }
 
   Widget _contact({required GlobalKey key}) {
+
 //print(contactDimensions.aspectRatio);
     return LayoutBuilder(builder: (context, constraints) {
       final containerW = 1440.w;
@@ -108,8 +116,8 @@ class LandingPage extends StatelessWidget {
                     children: [
                       customImage(
                         imagePath: ImagePath.qr,
-                        height: 141.h, // 141/424
-                        width: 141.w, // 141/1440
+                        height:141.h, // 141/424
+                        width:141.w, // 141/1440
                       ),
                       SizedBox(
                           width:
@@ -534,11 +542,11 @@ class LandingPage extends StatelessWidget {
   }
 
   Widget _vision({required GlobalKey key, required BuildContext context}) {
-    final contactDimensions = OriginalDimension(
+    const contactDimensions = OriginalDimension(
       width: 1355,
       height: 806,
     );
-    final boxDimensions = OriginalDimension(width: 1355, height: 570);
+    const boxDimensions = OriginalDimension(width: 1355, height: 570);
     final padding = 43.w;
     final containerW = SizeConfig.screenWidth - 2 * padding;
     final containerH = containerW / contactDimensions.aspectRatio;
