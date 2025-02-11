@@ -25,7 +25,7 @@ Widget discoverWidget3Zh({required BuildContext context}) {
                     style: TextStyle(
                       fontSize: 25.fSize,
                       height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w400,color: Colors.black
                     ),
                   ), 
                   TextSpan(
@@ -33,7 +33,7 @@ Widget discoverWidget3Zh({required BuildContext context}) {
                     style: TextStyle(
                       fontSize: 25.fSize,
                       height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w700,color: Colors.black
                     ),
                   ),
                   
@@ -53,7 +53,7 @@ Widget discoverWidget3Zh({required BuildContext context}) {
                     style: TextStyle(
                       fontSize: 25.fSize,
                       height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w400,color: Colors.black
                     ),
                   ),
                   TextSpan(
@@ -61,7 +61,7 @@ Widget discoverWidget3Zh({required BuildContext context}) {
                     style: TextStyle(
                       fontSize: 25.fSize,
                       height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w700,color: Colors.black
                     ),
                   ),
                   TextSpan(
@@ -69,7 +69,7 @@ Widget discoverWidget3Zh({required BuildContext context}) {
                     style: TextStyle(
                       fontSize: 25.fSize,
                       height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w400,color: Colors.black
                     ),
                   ),
                 ],
@@ -88,7 +88,7 @@ Widget discoverWidget3Zh({required BuildContext context}) {
                     style: TextStyle(
                       fontSize: 25.fSize,
                       height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w400,color: Colors.black
                     ),
                   ),
                   TextSpan(
@@ -96,7 +96,7 @@ Widget discoverWidget3Zh({required BuildContext context}) {
                     style: TextStyle(
                       fontSize: 25.fSize,
                       height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w700,color: Colors.black
                     ),
                   ),
                 ],

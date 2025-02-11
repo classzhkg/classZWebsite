@@ -1,4 +1,3 @@
-import 'package:classz_web/utils/app_utils.dart';
 import 'package:classz_web/view/screen/landingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -16,13 +15,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale = Locale('en', ''); // Default locale is English
+  Locale _locale = const Locale('en', ''); // Default locale is English
 
   // Function to switch the language
   void _switchLanguage() {
     setState(() {
       // Toggle between 'en' and 'zh'
-      _locale = _locale.languageCode == 'en' ? Locale('zh', '') : Locale('en', '');
+      _locale = _locale.languageCode == 'en'
+          ? const Locale('zh', '')
+          : const Locale('en', '');
     });
   }
 
@@ -35,13 +36,15 @@ class _MyAppState extends State<MyApp> {
         Locale('zh', ''), // Mandarin
       ],
       locale: _locale, // Dynamically set the locale
-      localizationsDelegates: [
+      localizationsDelegates:const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
-        S.delegate, 
+        S.delegate,
       ],
-      home: LandingPage(onLanguageChange: _switchLanguage), // Pass language change function to LandingPage
+      home: LandingPage(
+          onLanguageChange:
+              _switchLanguage), // Pass language change function to LandingPage
     );
   }
 }

@@ -5,7 +5,6 @@ import 'package:classz_web/view/widgets/customText.dart';
 import 'package:classz_web/view/widgets/richTextWithIcon.dart';
 import 'package:flutter/material.dart';
 
-
 Widget discoverWidget3En({required BuildContext context}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -23,41 +22,44 @@ Widget discoverWidget3En({required BuildContext context}) {
                   TextSpan(
                     text: S.of(context).access,
                     style: TextStyle(
-                      fontSize: 25.fSize,
-                      height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w400,
-                    ),
+                        fontSize: 25.fSize,
+                        height: 34.25.fSize / 25.fSize,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
                   ),
                   TextSpan(
                     text: " ${S.of(context).senscreening}",
                     style: TextStyle(
-                      fontSize: 25.fSize,
-                      height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w700,
-                    ),
+                        fontSize: 25.fSize,
+                        height: 34.25.fSize / 25.fSize,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
                   ),
                   TextSpan(
                     text: " ${S.of(context).and} ",
                     style: TextStyle(
-                      fontSize: 25.fSize,
-                      height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w400,
-                    ),
+                        fontSize: 25.fSize,
+                        height: 34.25.fSize / 25.fSize,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
                   ),
                   TextSpan(
                     text: S.of(context).skilltests,
                     style: TextStyle(
-                      fontSize: 25.fSize,
-                      height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w700,
-                    ),
+                        fontSize: 25.fSize,
+                        height: 34.25.fSize / 25.fSize,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
                   ),
                 ],
               ),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-          ),SizedBox(height: 30.h,),
+          ),
+          SizedBox(
+            height: 30.h,
+          ),
           CustomRichTextIcon(
             width: 566.w,
             richText: RichText(
@@ -66,33 +68,36 @@ Widget discoverWidget3En({required BuildContext context}) {
                   TextSpan(
                     text: "${S.of(context).join} ",
                     style: TextStyle(
-                      fontSize: 25.fSize,
-                      height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w400,
-                    ),
+                        fontSize: 25.fSize,
+                        height: 34.25.fSize / 25.fSize,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
                   ),
                   TextSpan(
                     text: "${S.of(context).expertledworkshop} ",
                     style: TextStyle(
-                      fontSize: 25.fSize,
-                      height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w700,
-                    ),
+                        fontSize: 25.fSize,
+                        height: 34.25.fSize / 25.fSize,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
                   ),
                   TextSpan(
                     text: S.of(context).focusedonparentingtoSupport,
                     style: TextStyle(
-                      fontSize: 25.fSize,
-                      height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w400,
-                    ),
+                        fontSize: 25.fSize,
+                        height: 34.25.fSize / 25.fSize,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
                   ),
                 ],
               ),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-          ),SizedBox(height: 30.h,),
+          ),
+          SizedBox(
+            height: 30.h,
+          ),
           CustomRichTextIcon(
             width: 566.w,
             richText: RichText(
@@ -101,18 +106,18 @@ Widget discoverWidget3En({required BuildContext context}) {
                   TextSpan(
                     text: S.of(context).enjoyEngagingFamilyActivitiesToCreate,
                     style: TextStyle(
-                      fontSize: 25.fSize,
-                      height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w400,
-                    ),
+                        fontSize: 25.fSize,
+                        height: 34.25.fSize / 25.fSize,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
                   ),
                   TextSpan(
                     text: " ${S.of(context).memorableExperience}",
                     style: TextStyle(
-                      fontSize: 25.fSize,
-                      height: 34.25.fSize / 25.fSize,
-                      fontWeight: FontWeight.w700,
-                    ),
+                        fontSize: 25.fSize,
+                        height: 34.25.fSize / 25.fSize,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
                   ),
                 ],
               ),

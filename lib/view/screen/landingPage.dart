@@ -1,5 +1,5 @@
 import 'package:classz_web/generated/l10n.dart';
-import 'package:classz_web/main.dart';
+
 import 'package:classz_web/utils/app_utils.dart';
 import 'package:classz_web/view/theme/app_colors.dart';
 import 'package:classz_web/view/widgets/customSvg.dart';
@@ -16,15 +16,10 @@ import 'package:classz_web/view/widgets/discoverWidget4_en.dart';
 import 'package:classz_web/view/widgets/disoverWidget4_zh.dart';
 import 'package:flutter/material.dart';
 import 'package:classz_web/view/widgets/customImage.dart';
-import 'package:pixel_perfect/pixel_perfect.dart';
 
 class LandingPage extends StatelessWidget {
   final Function onLanguageChange;
   LandingPage({super.key, required this.onLanguageChange});
-
-  final ScrollController _scrollController = ScrollController();
-
-  final GlobalKey _contactUsKey = GlobalKey();
 
   final GlobalKey _contactKey = GlobalKey();
 
@@ -36,40 +31,41 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     final currentLocale = Localizations.localeOf(context);
-    print(currentLocale);
-    return Scaffold(
-      body: LayoutBuilder(builder: (context, constraints) {
-        return SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _allfont(context: context, local: currentLocale),
-              SizedBox(
-                height: 203.h,
-              ),
-              _vision(key: _visionKey, context: context),
-              SizedBox(
-                height: 203.h,
-              ),
-              _discover(
-                  key: _discoverKey, context: context, local: currentLocale),
-              SizedBox(
-                height: 203.h,
-              ),
-              _launch(context: context),
-              SizedBox(
-                height: 203.h,
-              ),
-              _contact(key: _contactKey)
-            ],
-          ),
-        );
-      }),
+
+    return SafeArea(
+      child: Scaffold(
+        body: LayoutBuilder(builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _allfont(context: context, local: currentLocale),
+                SizedBox(
+                  height: 203.h,
+                ),
+                _vision(key: _visionKey, context: context),
+                SizedBox(
+                  height: 203.h,
+                ),
+                _discover(
+                    key: _discoverKey, context: context, local: currentLocale),
+                SizedBox(
+                  height: 203.h,
+                ),
+                _launch(context: context),
+                SizedBox(
+                  height: 203.h,
+                ),
+                _contact(key: _contactKey)
+              ],
+            ),
+          );
+        }),
+      ),
     );
   }
 
   Widget _contact({required GlobalKey key}) {
-
 //print(contactDimensions.aspectRatio);
     return LayoutBuilder(builder: (context, constraints) {
       final containerW = 1440.w;
@@ -112,8 +108,8 @@ class LandingPage extends StatelessWidget {
                     children: [
                       customImage(
                         imagePath: ImagePath.qr,
-                        height:141.h, // 141/424
-                        width:141.w, // 141/1440
+                        height: 141.h, // 141/424
+                        width: 141.w, // 141/1440
                       ),
                       SizedBox(
                           width:

@@ -55,8 +55,6 @@ class SizeUtils {
       height = boxConstraints.maxWidth;
     }
 
-    print('Width: $width'); // Debug print
-
     if (width >= 1200) {
       deviceType = DeviceType.desktop;
     } else if (width >= 600) {
@@ -64,8 +62,6 @@ class SizeUtils {
     } else {
       deviceType = DeviceType.mobile;
     }
-
-    print('DeviceType: $deviceType'); // Debug print
   }
 }
 
@@ -125,6 +121,7 @@ class SizeConfig {
   /// Check if configuration is initialized
   static bool get isInitialized {
     try {
+      // ignore: unnecessary_null_comparison
       return _mediaQueryData != null;
     } catch (e) {
       return false;
@@ -209,7 +206,7 @@ class ImagePath {
 void scrollToTarget(GlobalKey key) {
   Scrollable.ensureVisible(
     key.currentContext!,
-    duration: Duration(seconds: 1),
+    duration:const Duration(seconds: 1),
     curve: Curves.easeInOut,
   );
 }
